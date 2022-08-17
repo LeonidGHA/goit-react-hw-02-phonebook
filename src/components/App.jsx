@@ -1,5 +1,5 @@
 import { Component } from 'react';
-
+import Notiflix from 'notiflix';
 import css from './App.module.css';
 
 import Forms from './Forms';
@@ -18,6 +18,16 @@ class App extends Component {
   };
 
   submitDataForm = data => {
+    const { contacts } = this.state;
+    if (contacts.find(el => el.name === data.name)) {
+      Notiflix.Report.failure(
+        'you already have such contact',
+        'add another contact name',
+        'Okay'
+      );
+      return;
+    }
+    Notiflix.Notify.success('You have a new Contact');
     this.setState(prevState => ({
       contacts: [...prevState.contacts, data],
     }));
@@ -39,7 +49,7 @@ class App extends Component {
   deleteContacts = e => {
     const { contacts } = this.state;
     const newArr = contacts.filter(el => el.id !== e.target.id);
-    console.log(newArr);
+    Notiflix.Notify.success('Contact is delete');
     return this.setState({
       contacts: newArr,
     });

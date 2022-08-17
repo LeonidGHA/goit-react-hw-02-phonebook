@@ -1,5 +1,5 @@
 import css from './App.module.css';
-
+import PropTypes from 'prop-types';
 function Filter({ onWrite }) {
   return (
     <input
@@ -13,4 +13,7 @@ function Filter({ onWrite }) {
   );
 }
 
+Filter.propTypes = {
+  onWrite: PropTypes.func,
+};
 export default Filter;
