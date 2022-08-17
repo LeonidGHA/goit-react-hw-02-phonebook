@@ -20,9 +20,9 @@ class App extends Component {
   submitDataForm = data => {
     const { contacts } = this.state;
     if (contacts.find(el => el.name === data.name)) {
-      Notiflix.Report.failure(
-        'you already have such contact',
-        'add another contact name',
+      Notiflix.Report.warning(
+        `Warning`,
+        `${data.name} is already in cotacts`,
         'Okay'
       );
       return;
